@@ -1,5 +1,5 @@
 cask 'zulu-7-cek' do
-  version '7.0_131'
+  version '7.0_141'
   sha256 '8021a28b8cac41b44f1421fd210a0a0822fcaf88d62d2e70a35b2ff628a8675a'
 
   url "http://www.azulsystems.com/sites/default/files/images/ZuluJCEPolicies.zip"
