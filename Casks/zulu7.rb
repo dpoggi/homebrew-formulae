@@ -1,4 +1,4 @@
-cask 'zulu-7' do
+cask 'zulu7' do
   version '7.0_141,7.18.0.3'
   sha256 'f72ecbb7c34a190718eb4d222328dfdf81fbd4fecee847bada28285cf12f58e7'
 
