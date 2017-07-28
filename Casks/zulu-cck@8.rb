@@ -1,13 +1,13 @@
-cask 'zulu8-cck' do
+cask 'zulu-cck@8' do
   version '8.0.0.4,1.8.0_131'
   sha256 '9f69fcec07b915ace5d0ccaea164b0a3492ac7dceed7f42224c23098ff0613e0'
 
   url "https://cdn.azul.com/zcck/bin/zcck#{version.before_comma}-macosx_x64.sh",
-      referer: 'https://www.azul.com/products/zulu/cck-downloads/mac-os-x/'
+      referer: 'https://www.azul.com/products/zulu-and-zulu-enterprise/cck-downloads/mac-os-x/'
   name 'Azul Zulu Commercial Compatibility Kit for Java SE 8'
-  homepage 'https://www.azul.com/products/zulu/cck-downloads/'
+  homepage 'https://www.azul.com/products/zulu-and-zulu-enterprise/cck-downloads/'
 
-  depends_on cask: 'zulu8'
+  depends_on cask: 'zulu@8'
 
   container type: :naked
 
@@ -27,4 +27,10 @@ cask 'zulu8-cck' do
                    args: [staged_path/'install_cck.tcl'],
                    sudo: true
   end
+
+  caveats <<-EOS.undent
+    Installing this Cask means you have AGREED to the Zulu CCK Terms of Use at
+
+      https://www.azul.com/products/zulu-and-zulu-enterprise/zulu-cck-terms-of-use/
+  EOS
 end
