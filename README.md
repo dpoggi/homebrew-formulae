@@ -1,15 +1,29 @@
 # dpoggi/formulae Homebrew Tap
 
+## Getting Started
+
+```sh
+brew tap dpoggi/formulae
+```
+
+## Formulae
+
+None at the moment.
+
 ## Casks
 
-Casks for Zulu JDKs have been modified to be minimally intrusive (no modification of symlinks) and follow a uniform directory naming scheme.
+Casks for Azul Zulu JDKs have been modified to be minimally intrusive (no modification of symlinks) and follow a uniform directory naming scheme.
 
-* `zulu7`: Azul Zulu OpenJDK 7
-* `zulu7-cck`: Commercial Compatibility Kit for `zulu7`
-* `zulu8`: Azul Zulu OpenJDK 8
-* `zulu8-cck`: Commercial Compatibility Kit for `zulu8`
-* `zulu9`: Azul Zulu OpenJDK 9
+* `zulu@7`: Zulu Java SE 7 Development Kit
+* `zulu-cck@7`: Commercial Compatibility Kit for Zulu 7
+* `zulu@8`: Zulu Java SE 8 Development Kit
+* `zulu-cck@8`: Commercial Compatibility Kit for Zulu 8
+* `zulu@9`: Zulu Java SE 9 Development Kit
 
 ## License
 
-MIT License, see `LICENSE` for details.
+[MIT License](https://opensource.org/licenses/MIT)
+
+## Copyright
+
+Copyright &copy; 2016&ndash;2017 Dan Poggi
