@@ -3,9 +3,9 @@ cask 'zulu@8' do
   sha256 '851800b6a65d23d32d6142ef698146ff14e870038112d31d8a7d4c41a0c9a8a1'
 
   url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(/^.*_/, '')}-macosx_x64.dmg",
-      referer: 'http://www.azul.com/downloads/zulu/zulu-mac/'
-  name 'Azul Zulu Java SE 8 Development Kit'
-  homepage 'https://www.azul.com/products/zulu-and-zulu-enterprise/'
+      referer: 'https://zulu.org/download/?platform=MacOS'
+  name 'Zulu Java SE 8 Development Kit'
+  homepage 'https://zulu.org/'
 
   pkg "Double-Click to Install Zulu #{version.minor}.pkg"
 
