@@ -22,6 +22,8 @@ Oracle JDKs do.
 * `zulu@9`: Zulu Java SE 9 Development Kit
 * `zulu-cck@7`: Commercial Compatibility Kit for Zulu 7
 * `zulu-cck@8`: Commercial Compatibility Kit for Zulu 8
+* `zulu-cek@7`: Cryptography Extension Kit for Zulu 7
+* `zulu-cek@8`: Cryptography Extension Kit for Zulu 8
 
 ## License
 
