@@ -1,15 +1,22 @@
 cask 'zulu@9' do
-  version '9.0.0,9.0.0.13'
-  sha256 'edfe190664bf8e588cf92925f612ef78d9915e5470c824c1296acb5a72f7654b'
+  version '9.0.0,9.0.0.15'
+  sha256 '90bc8fc8d76a5e62a02beeb94d933b70c4ecca8397534db09155c752d41ae734'
 
-  url "https://cdn.azul.com/zulu-pre/bin/zulu#{version.after_comma}-ea-jdk#{version.before_comma}-macosx_x64.dmg",
-      referer: 'https://zulu.org/zulu-9-pre-release-downloads/'
-  name 'Azul Zulu Java SE 9 Development Kit'
-  homepage 'https://zulu.org/zulu-9-pre-release-downloads/'
+  # cdn.azul.com was verified as official when first introduced to the cask
+  url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-jdk#{version.before_comma}-macosx_x64.dmg",
+      referer: 'https://zulu.org/download/?platform=MacOS'
+  name 'Zulu Java SE 9 Development Kit'
+  homepage 'https://zulu.org/'
 
   pkg "Double-Click to Install Zulu #{version.major}.pkg"
 
   postflight do
+    system_command '/bin/mv',
+                   args: ['-f', '--', "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk", "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk"],
+                   sudo: true
+    system_command '/usr/libexec/PlistBuddy',
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string BundledApp', "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk/Contents/Info.plist"],
+                   sudo: true
     system_command '/usr/libexec/PlistBuddy',
                    args: ['-c', 'Add :JavaVM:JVMCapabilities: string JNI', "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk/Contents/Info.plist"],
                    sudo: true
@@ -19,6 +26,6 @@ cask 'zulu@9' do
                        "com.azulsystems.zulu.#{version.major}",
                      ],
             delete:  [
-                       "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk",
+                       "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk",
                      ]
 end
