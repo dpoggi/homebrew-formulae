@@ -11,11 +11,38 @@ cask 'zulu-cek@7' do
   stage_only true
 
   postflight do
-    system_command '/usr/bin/install',
-                   args: ['-p', '-m', '0644', '-o', 'root', '-g', 'wheel', '--', staged_path.join('ZuluJCEPolicies', 'local_policy.jar'), "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar"],
+    system_command '/bin/cp',
+                   args: ['-an', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar", "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar.bak"],
                    sudo: true
-    system_command '/usr/bin/install',
-                   args: ['-p', '-m', '0644', '-o', 'root', '-g', 'wheel', '--', staged_path.join('ZuluJCEPolicies', 'US_export_policy.jar'), "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar"],
+    system_command '/bin/cp',
+                   args: ['-an', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar", "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar.bak"],
+                   sudo: true
+    system_command '/bin/ln',
+                   args: ['-nsf', staged_path.join('ZuluJCEPolicies', 'local_policy.jar'), "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar"],
+                   sudo: true
+    system_command '/bin/ln',
+                   args: ['-nsf', staged_path.join('ZuluJCEPolicies', 'US_export_policy.jar'), "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar"],
+                   sudo: true
+  end
+
+  uninstall_postflight do
+    system_command '/bin/rm',
+                   args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar"],
+                   sudo: true
+    system_command '/bin/rm',
+                   args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar"],
+                   sudo: true
+    system_command '/bin/cp',
+                   args: ['-an', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar.bak", "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar"],
+                   sudo: true
+    system_command '/bin/cp',
+                   args: ['-an', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar.bak", "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar"],
+                   sudo: true
+    system_command '/bin/rm',
+                   args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/local_policy.jar.bak"],
+                   sudo: true
+    system_command '/bin/rm',
+                   args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version}.jdk/Contents/Home/jre/lib/security/US_export_policy.jar.bak"],
                    sudo: true
   end
 
