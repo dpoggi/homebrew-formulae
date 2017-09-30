@@ -12,21 +12,45 @@ cask 'zulu-cck@7' do
   container type: :naked
 
   postflight do
-    script_path = staged_path.join('install_cck.tcl')
+    system_command '/bin/bash',
+                   args: ['-c', "tail -n \"+$(awk '/^__ARCHIVE_START__/ { print NR + 1; exit 0; }' \"#{staged_path.join("zcck#{version.before_comma}-macosx_x64.sh")}\")\" \"#{staged_path.join("zcck#{version.before_comma}-macosx_x64.sh")}\" | tar xf - -C \"#{staged_path}\""]
 
-    IO.write script_path, <<-EOS.undent
-      set timeout -1
+    system_command '/bin/mkdir',
+                   args: ['-p', "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/etc"],
+                   sudo: true
+    Dir.glob(staged_path.join('license', '*')) do |license|
+      system_command '/bin/ln',
+                     args: ['-nsf', license, "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/etc/#{File.basename(license)}"],
+                     sudo: true
+    end
 
-      spawn -noecho /bin/sh #{staged_path}/zcck#{version.before_comma}-macosx_x64.sh
+    system_command '/bin/mkdir',
+                   args: ['-p', "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/jre/lib/fonts"],
+                   sudo: true
+    Dir.glob(staged_path.join('fonts', '*')) do |font|
+      system_command '/bin/ln',
+                     args: ['-nsf', font, "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/jre/lib/fonts/#{File.basename(font)}"],
+                     sudo: true
+    end
+  end
 
-      expect "patch:"
-      send "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home\\r"
+  uninstall_postflight do
+    Dir.glob(staged_path.join('license', '*')) do |license|
+      system_command '/bin/rm',
+                     args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/etc/#{File.basename(license)}"],
+                     sudo: true
+    end
+    system_command '/bin/bash',
+                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/etc >/dev/null 2>&1 || true"],
+                   sudo: true
 
-      expect eof
-    EOS
-
-    system_command '/usr/bin/expect',
-                   args: [script_path],
+    Dir.glob(staged_path.join('fonts', '*')) do |font|
+      system_command '/bin/rm',
+                     args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/jre/lib/fonts/#{File.basename(font)}"],
+                     sudo: true
+    end
+    system_command '/bin/bash',
+                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.after_comma}.jdk/Contents/Home/jre/lib/fonts >/dev/null 2>&1 || true"],
                    sudo: true
   end
 
