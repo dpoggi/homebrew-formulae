@@ -48,8 +48,8 @@ cask 'zulu-cek@7' do
   end
 
   caveats <<-EOS.undent
-    By installing this Cask, you certify that you reside in a jurisdiction that
-    does NOT restrict the importation or use of the strong cryptography software
-    contained herein.
+    Installing this Cask means you have AGREED to the Terms of Use at
+
+      https://www.azul.com/products/zulu-and-zulu-enterprise/zulu-cryptography-extension-kit/
   EOS
 end
