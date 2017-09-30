@@ -2,7 +2,7 @@ cask 'zulu-cek@8' do
   version '1.8.0_144'
   sha256 '8021a28b8cac41b44f1421fd210a0a0822fcaf88d62d2e70a35b2ff628a8675a'
 
-  url 'https://cdn.azul.com/zcek/bin/ZuluJCEPolicies.zip'
+  url 'https://cdn.azul.com/zcek/bin/ZuluJCEPolicies.zip',
       referer: 'https://www.azul.com/products/zulu-and-zulu-enterprise/zulu-cryptography-extension-kit/'
   name 'Cryptography Extension Kit for Zulu 8'
   homepage 'https://www.azul.com/products/zulu-and-zulu-enterprise/zulu-cryptography-extension-kit/'
