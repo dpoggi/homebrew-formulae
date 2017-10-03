@@ -16,21 +16,16 @@ class EmacsPlusAT26 < Formula
 
   option "without-cocoa",
          "Build a non-Cocoa version of Emacs"
-  option "without-libxml2",
-         "Build without libxml2 support"
   option "without-modules",
          "Build without dynamic modules support"
   option "without-spacemacs-icon",
          "Build without Spacemacs icon by Nasser Alshammari"
-  option "with-ctags",
-         "Don't remove the ctags executable that Emacs provides"
   option "with-x11",
          "Experimental: build with x11 support"
   option "with-natural-title-bar",
          "Experimental: use a title bar colour inferred by your theme"
 
   deprecated_option "cocoa" => "with-cocoa"
-  deprecated_option "keep-ctags" => "with-ctags"
   deprecated_option "with-d-bus" => "with-dbus"
 
   depends_on "pkg-config" => :build
@@ -68,14 +63,8 @@ class EmacsPlusAT26 < Formula
       --infodir=#{info}/emacs
       --prefix=#{prefix}
       --with-gnutls
-      --with-littlecms
+      --with-xml2
     ]
-
-    if build.with? "libxml2"
-      args << "--with-xml2"
-    else
-      args << "--without-xml2"
-    end
 
     if build.with? "dbus"
       args << "--with-dbus"
@@ -97,6 +86,8 @@ class EmacsPlusAT26 < Formula
     args << "--without-pop" if build.with? "mailutils"
 
     if build.head?
+      args << "--with-lcms2"
+
       ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
       system "./autogen.sh"
     end
@@ -148,28 +139,38 @@ class EmacsPlusAT26 < Formula
 
     # Follow MacPorts and don't install ctags from Emacs. This allows Vim
     # and Emacs and ctags to play together without violence.
-    if build.without? "ctags"
-      (bin/"ctags").unlink
-      (man1/"ctags.1.gz").unlink
-    end
+    (bin/"ctags").unlink
+    (man1/"ctags.1.gz").unlink
   end
 
   plist_options :manual => "emacs"
 
-  def plist; <<-EOS.undent
+  def plist;
+    if build.head?
+      disposition = <<-EOS.undent
+        <key>KeepAlive</key>
+        <dict>
+          <key>Crashed</key>
+          <true/>
+          <key>SuccessfulExit</key>
+          <false/>
+        </dict>
+      EOS
+    else
+      disposition = <<-EOS.undent
+        <key>LaunchOnlyOnce</key>
+        <true/>
+      EOS
+    end
+    
+    <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
     <dict>
       <key>Label</key>
       <string>#{plist_name}</string>
-      <key>KeepAlive</key>
-      <dict>
-        <key>Crashed</key>
-        <true/>
-        <key>SuccessfulExit</key>
-        <false/>
-      </dict>
+    #{disposition}
       <key>ProgramArguments</key>
       <array>
         <string>#{opt_bin}/emacs</string>
@@ -177,7 +178,7 @@ class EmacsPlusAT26 < Formula
       </array>
     </dict>
     </plist>
-  EOS
+    EOS
   end
 
   test do
