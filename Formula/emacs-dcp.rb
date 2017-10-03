@@ -43,8 +43,7 @@ class EmacsDcp < Formula
     depends_on "fontconfig" => :recommended
   end
 
-  conflicts_with "emacs", "emacs-plus",
-    :because => "they install conflicting executables"
+  conflicts_with "emacs", :because => "they install conflicting executables"
 
   if build.with? "natural-title-bar"
     patch do
@@ -148,7 +147,7 @@ class EmacsDcp < Formula
 
   plist_options :manual => "emacs"
 
-  def plist;
+  def plist
     if build.head?
       disposition = <<-EOS.undent
         <key>KeepAlive</key>
@@ -165,7 +164,7 @@ class EmacsDcp < Formula
         <true/>
       EOS
     end
-    
+
     <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
