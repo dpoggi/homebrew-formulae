@@ -8,6 +8,8 @@ cask 'zulu@8' do
   name 'Zulu Java SE 8 Development Kit'
   homepage 'https://zulu.org/'
 
+  conflicts_with cask: 'zulu8'
+
   pkg "Double-Click to Install Zulu #{version.minor}.pkg"
 
   postflight do
