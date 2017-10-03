@@ -8,8 +8,9 @@ brew tap dpoggi/formulae
 
 ## Formulae
 
-* `emacs-plus@26`: Clone of [d12frosted/emacs-plus](https://github.com/d12frosted/emacs-plus)
-  modified to build the `emacs-26` branch instead of `master` with `--HEAD`
+* `emacs-dcp`: Clone of [d12frosted/emacs-plus](https://github.com/d12frosted/emacs-plus)
+  modified to build only from the `emacs-26` branch, with most options
+  preconfigured (not available as switches).
 
 ## Casks
 
