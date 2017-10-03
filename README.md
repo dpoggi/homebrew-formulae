@@ -25,6 +25,13 @@ Oracle JDKs do.
 * `zulu-cek@7`: Cryptography Extension Kit for Zulu 7
 * `zulu-cek@8`: Cryptography Extension Kit for Zulu 8
 
+---
+
+* `zulu7-cck`: Commercial Compatibility Kit for Zulu 7 (compatibility with `zulu7`)
+* `zulu8-cck`: Commercial Compatibility Kit for Zulu 8 (compatibility with `zulu8`)
+* `zulu7-cek`: Cryptography Extension Kit for Zulu 7 (compatibility with `zulu7`)
+* `zulu8-cek`: Cryptography Extension Kit for Zulu 8 (compatibility with `zulu8`)
+
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
