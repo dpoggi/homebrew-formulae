@@ -1,4 +1,4 @@
-class EmacsPlusAT26 < Formula
+class EmacsDcp < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
   url "https://ftp.gnu.org/gnu/emacs/emacs-25.3.tar.xz"
@@ -42,6 +42,9 @@ class EmacsPlusAT26 < Formula
     depends_on "freetype" => :recommended
     depends_on "fontconfig" => :recommended
   end
+
+  conflicts_with "emacs", "emacs-plus",
+    :because => "they install conflicting executables"
 
   if build.with? "natural-title-bar"
     patch do
