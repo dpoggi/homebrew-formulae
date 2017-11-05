@@ -1,5 +1,5 @@
 cask 'zulu-cck@7' do
-  version '1.7.0_154,7.0.0.4'
+  version '1.7.0_161,7.0.0.4'
   sha256 '8602d339b2b2384895d2c56abeab55b02931a7943c4a3a7880b6d770d1b07511'
 
   # cdn.azul.com was verified as official when first introduced to the cask
