@@ -2,7 +2,7 @@ class EmacsDcp < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
   url "https://github.com/emacs-mirror/emacs.git", :branch => "emacs-26"
-  version "26.0.60"
+  version "26.0.90"
 
   option "without-cocoa",
          "Build a non-Cocoa version of Emacs"
