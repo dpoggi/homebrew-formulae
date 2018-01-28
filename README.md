@@ -35,4 +35,4 @@ Oracle JDKs do.
 
 ## Copyright
 
-Copyright &copy; 2016&ndash;2017 Dan Poggi
+Copyright &copy; 2016&ndash;2018 Dan Poggi
