@@ -14,9 +14,9 @@ brew tap dpoggi/formulae
 
 ## Casks
 
-Casks for Azul Zulu JDKs have been modified to be minimally intrusive
+Casks for Azul Zulu&reg; JDKs have been modified to be minimally intrusive
 (no modification of symlinks) and follow the same directory naming scheme
-Oracle JDKs do.
+Oracle&reg; JDKs do.
 
 * `zulu@7`: Zulu Java SE 7 Development Kit
 * `zulu@8`: Zulu Java SE 8 Development Kit
