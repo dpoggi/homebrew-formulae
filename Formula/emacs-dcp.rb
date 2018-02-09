@@ -1,8 +1,16 @@
 class EmacsDcp < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://github.com/emacs-mirror/emacs.git", :tag => "emacs-26.0.91"
-  version "26.0.91"
+  url "https://alpha.gnu.org/gnu/emacs/pretest/emacs-26.0.91.tar.xz"
+  sha256 "31f6bb353e13d337e10160f778608e342becd213fbb21c9f08085abe318381a0"
+
+  head do
+    url "https://gitub.com/emacs-mirror/emacs.git", :branch => "emacs-26"
+
+    depends_on "autoconf" => :build
+    depends_on "gnu-sed" => :build
+    depends_on "texinfo" => :build
+  end
 
   option "without-cocoa",
          "Build a non-Cocoa version of Emacs"
@@ -11,9 +19,7 @@ class EmacsDcp < Formula
   option "without-spacemacs-icon",
          "Build without Spacemacs icon by Nasser Alshammari"
 
-  depends_on "autoconf" => :build
   depends_on "dbus"
-  depends_on "gnu-sed" => :build
   depends_on "gnutls"
   # Emacs does not support ImageMagick 7:
   # Reported on 2017-03-04: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25967
@@ -22,7 +28,6 @@ class EmacsDcp < Formula
   depends_on "little-cms2"
   depends_on "mailutils" => :optional
   depends_on "pkg-config" => :build
-  depends_on "texinfo" => :build
 
   conflicts_with "emacs", :because => "they install conflicting executables"
 
@@ -50,8 +55,10 @@ class EmacsDcp < Formula
     args << "--with-modules" if build.with? "modules"
     args << "--without-pop" if build.with? "mailutils"
 
-    ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
-    system "./autogen.sh"
+    if build.head?
+      ENV.prepend_path "PATH", Formula["gnu-sed"].opt_libexec/"gnubin"
+      system "./autogen.sh"
+    end
 
     if build.with? "cocoa"
       args << "--with-ns" << "--disable-ns-self-contained"
