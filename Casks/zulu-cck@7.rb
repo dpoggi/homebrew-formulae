@@ -54,7 +54,7 @@ cask 'zulu-cck@7' do
                    sudo: true
   end
 
-  caveats <<-EOS.undent
+  caveats <<~EOS
     Installing this Cask means you have AGREED to the Zulu CCK Terms of Use at
 
       https://www.azul.com/products/zulu-and-zulu-enterprise/zulu-cck-terms-of-use/
