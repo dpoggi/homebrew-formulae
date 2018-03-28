@@ -8,9 +8,6 @@ brew tap dpoggi/formulae
 
 ## Formulae
 
-* `emacs-dcp`: Clone of [d12frosted/emacs-plus](https://github.com/d12frosted/emacs-plus)
-  with most switches removed (preconfigured). Builds the latest Emacs 26 alpha
-  by default, or from the `emacs-26` Git branch with `--HEAD`.
 * `jenkins-dcp`: Clone of `homebrew-core`'s `jenkins-lts`, with its `launchd.plist(5)`
   modified.
 
