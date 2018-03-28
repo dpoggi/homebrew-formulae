@@ -20,6 +20,7 @@ and follow the same directory naming scheme Oracle&reg; JDK installers do.
 * `zulu@7`: Zulu&reg; 7
 * `zulu@8`: Zulu&reg; 8
 * `zulu@9`: Zulu&reg; 9
+* `zulu@10`: Zulu&reg; 10
 * `zulu-cck@7`: Commercial Compatibility Kit for Zulu&reg; 7
 * `zulu-cck@8`: Commercial Compatibility Kit for Zulu&reg; 8
 
