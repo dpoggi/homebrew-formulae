@@ -6,18 +6,40 @@ class JenkinsDcp < Formula
 
   bottle :unneeded
 
-  depends_on :java => "1.7+"
+  JAVA_VERSION = "1.8".freeze
+  JAVA_OPTS = %w[
+    -server
+    -Xms512m
+    -Xmx1024m
+    -XX:+AlwaysPreTouch
+    -XX:+UseG1GC
+    -XX:+ExplicitGCInvokesConcurrent
+    -XX:+ParallelRefProcEnabled
+    -XX:+UseStringDeduplication
+    -XX:+UnlockExperimentalVMOptions
+    -XX:G1NewSizePercent=20
+    -Dmail.smtp.starttls.enable=true
+  ].freeze
+
+  depends_on :java => JAVA_VERSION
 
   def install
     system "jar", "xvf", "jenkins.war"
     libexec.install "jenkins.war", "WEB-INF/jenkins-cli.jar"
-    bin.write_jar_script libexec/"jenkins.war", "jenkins-dcp"
-    bin.write_jar_script libexec/"jenkins-cli.jar", "jenkins-dcp-cli"
+    bin.write_jar_script libexec/"jenkins.war", "jenkins-dcp", JAVA_OPTS.join(" "), :java_version => JAVA_VERSION
+    bin.write_jar_script libexec/"jenkins-cli.jar", "jenkins-dcp-cli", :java_version => JAVA_VERSION
+  end
+
+  def post_install
+    (var/"jenkins").mkpath
   end
 
   def caveats; <<~EOS
+    You may want to add the following to your .bash_profile:
+      export JENKINS_HOME=#{var}/jenkins
+
     Note: When using launchctl the port will be 28080.
-    EOS
+  EOS
   end
 
   plist_options :manual => "jenkins-dcp"
@@ -36,15 +58,19 @@ class JenkinsDcp < Formula
         <key>SuccessfulExit</key>
         <false/>
       </dict>
+      <key>EnvironmentVariables</key>
+      <dict>
+        <key>JENKINS_HOME</key>
+        <string>#{var}/jenkins</string>
+      </dict>
       <key>ProgramArguments</key>
       <array>
-        <string>/usr/bin/java</string>
-        <string>-noverify</string>
-        <string>-Xms96m</string>
-        <string>-Xmx768m</string>
-        <string>-XX:+UseG1GC</string>
-        <string>-XX:MaxGCPauseMillis=333</string>
-        <string>-Dmail.smtp.starttls.enable=true</string>
+        <string>/usr/libexec/java_home</string>
+        <string>-v</string>
+        <string>#{JAVA_VERSION}</string>
+        <string>--exec</string>
+        <string>java</string>
+        #{JAVA_OPTS.map { |opt| "<string>#{opt}</string>" }.join("\n    ")}
         <string>-jar</string>
         <string>#{opt_libexec}/jenkins.war</string>
         <string>--httpListenAddress=127.0.0.1</string>
@@ -52,7 +78,7 @@ class JenkinsDcp < Formula
       </array>
     </dict>
     </plist>
-    EOS
+  EOS
   end
 
   test do
