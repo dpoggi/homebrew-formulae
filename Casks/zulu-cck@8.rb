@@ -13,7 +13,7 @@ cask 'zulu-cck@8' do
 
   postflight do
     installer_path = staged_path.join("zcck#{version.after_comma}-macosx_x64.sh")
-    system_command '/bin/bash',
+    system_command '/bin/sh',
                    args: ['-c', "tail -n \"+$(awk '/^__ARCHIVE_START__/ { print NR + 1; exit 0; }' \"#{installer_path}\")\" \"#{installer_path}\" | tar xf - -C \"#{staged_path}\""]
 
     system_command '/bin/mkdir',
@@ -41,7 +41,7 @@ cask 'zulu-cck@8' do
                      args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc/#{File.basename(license)}"],
                      sudo: true
     end
-    system_command '/bin/bash',
+    system_command '/bin/sh',
                    args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc >/dev/null 2>&1 || true"],
                    sudo: true
 
@@ -50,7 +50,7 @@ cask 'zulu-cck@8' do
                      args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts/#{File.basename(font)}"],
                      sudo: true
     end
-    system_command '/bin/bash',
+    system_command '/bin/sh',
                    args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts >/dev/null 2>&1 || true"],
                    sudo: true
   end
