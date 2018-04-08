@@ -1,4 +1,4 @@
-class JenkinsDcp < Formula
+class JenkinsLtsPlus < Formula
   desc "Extendable open-source CI server"
   homepage "https://jenkins.io/index.html#stable"
   url "http://mirrors.jenkins.io/war-stable/2.107.1/jenkins.war"
@@ -10,7 +10,7 @@ class JenkinsDcp < Formula
   JAVA_OPTS = %w[
     -server
     -Xms512m
-    -Xmx1024m
+    -Xmx1280m
     -XX:+AlwaysPreTouch
     -XX:+UseG1GC
     -XX:+ExplicitGCInvokesConcurrent
@@ -23,11 +23,13 @@ class JenkinsDcp < Formula
 
   depends_on :java => JAVA_VERSION
 
+  conflicts_with "jenkins-lts", :because => "both install `jenkins-lts` binaries"
+
   def install
     system "jar", "xvf", "jenkins.war"
     libexec.install "jenkins.war", "WEB-INF/jenkins-cli.jar"
-    bin.write_jar_script libexec/"jenkins.war", "jenkins-dcp", JAVA_OPTS.join(" "), :java_version => JAVA_VERSION
-    bin.write_jar_script libexec/"jenkins-cli.jar", "jenkins-dcp-cli", :java_version => JAVA_VERSION
+    bin.write_jar_script libexec/"jenkins.war", "jenkins-lts", JAVA_OPTS.join(" "), :java_version => JAVA_VERSION
+    bin.write_jar_script libexec/"jenkins-cli.jar", "jenkins-lts-cli", :java_version => JAVA_VERSION
   end
 
   def post_install
@@ -42,7 +44,7 @@ class JenkinsDcp < Formula
   EOS
   end
 
-  plist_options :manual => "jenkins-dcp"
+  plist_options :manual => "jenkins-lts"
 
   def plist; <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
@@ -86,7 +88,7 @@ class JenkinsDcp < Formula
     ENV.append "_JAVA_OPTIONS", "-Djava.io.tmpdir=#{testpath}"
 
     pid = fork do
-      exec "#{bin}/jenkins-dcp"
+      exec "#{bin}/jenkins-lts"
     end
     sleep 60
 

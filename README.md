@@ -8,9 +8,9 @@ brew tap dpoggi/formulae
 
 ## Formulae
 
-| Formula       | Description                                                                                                                         |
-|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `jenkins-dcp` | Clone of [homebrew-core](https://github.com/Homebrew/homebrew-core)'s `jenkins-lts`, with a new `launchd.plist(5)` and JVM options. |
+| Formula            | Description                                                                                                                                |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `jenkins-lts-plus` | [homebrew-core](https://github.com/Homebrew/homebrew-core)'s `jenkins-lts` with a new `launchd.plist(5)`, JVM options, and `JENKINS_HOME`. |
 
 ## Casks
 
