@@ -12,8 +12,9 @@ cask 'zulu7-cck' do
   container type: :naked
 
   postflight do
+    installer_path = staged_path.join("zcck#{version.after_comma}-macosx_x64.sh")
     system_command '/bin/bash',
-                   args: ['-c', "tail -n \"+$(awk '/^__ARCHIVE_START__/ { print NR + 1; exit 0; }' \"#{staged_path.join("zcck#{version.after_comma}-macosx_x64.sh")}\")\" \"#{staged_path.join("zcck#{version.after_comma}-macosx_x64.sh")}\" | tar xf - -C \"#{staged_path}\""]
+                   args: ['-c', "tail -n \"+$(awk '/^__ARCHIVE_START__/ { print NR + 1; exit 0; }' \"#{installer_path}\")\" \"#{installer_path}\" | tar xf - -C \"#{staged_path}\""]
 
     system_command '/bin/mkdir',
                    args: ['-p', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc"],
