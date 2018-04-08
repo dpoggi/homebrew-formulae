@@ -8,26 +8,26 @@ brew tap dpoggi/formulae
 
 ## Formulae
 
-* `jenkins-dcp`: Clone of `homebrew-core`'s `jenkins-lts`, with its `launchd.plist(5)`
-  modified.
+| Formula       | Description                                                                                                                         |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `jenkins-dcp` | Clone of [homebrew-core](https://github.com/Homebrew/homebrew-core)'s `jenkins-lts`, with a new `launchd.plist(5)` and JVM options. |
 
 ## Casks
 
-Casks for [Azul Systems&reg;](https://www.azul.com) [Zulu&reg;](https://zulu.org)
+Casks for [Azul Systems](https://www.azul.com)&reg; [Zulu](https://zulu.org)&reg;
 JDKs have been modified to be minimally intrusive (no modification of symlinks)
 and follow the same directory naming scheme Oracle&reg; JDK installers do.
 
-* `zulu@7`: Zulu&reg; 7
-* `zulu@8`: Zulu&reg; 8
-* `zulu@9`: Zulu&reg; 9
-* `zulu@10`: Zulu&reg; 10
-* `zulu-cck@7`: Commercial Compatibility Kit for Zulu&reg; 7
-* `zulu-cck@8`: Commercial Compatibility Kit for Zulu&reg; 8
-
----
-
-* `zulu7-cck`: Commercial Compatibility Kit for Zulu&reg; 7 (compatibility with `zulu7`)
-* `zulu8-cck`: Commercial Compatibility Kit for Zulu&reg; 8 (compatibility with `zulu8`)
+| Cask         | Description                               |
+|--------------|-------------------------------------------|
+| `zulu@10`    | Zulu OpenJDK 10                           |
+| `zulu@9`     | Zulu OpenJDK 9                            |
+| `zulu@8`     | Zulu OpenJDK 8                            |
+| `zulu@7`     | Zulu OpenJDK 7                            |
+| `zulu-cck@8` | Commercial Compatibility Kit for `zulu@8` |
+| `zulu-cck@7` | Commercial Compatibility Kit for `zulu@7` |
+| `zulu8-cck`  | Commercial Compatibility Kit for `zulu8`  |
+| `zulu7-cck`  | Commercial Compatibility Kit for `zulu7`  |
 
 ## License
 
@@ -37,8 +37,9 @@ and follow the same directory naming scheme Oracle&reg; JDK installers do.
 
 Copyright &copy; 2016&ndash;2018 Dan Poggi
 
-## Trademark Usage
+## Trademark Notice
 
 Azul Systems and Zulu are registered trademarks of Azul Systems, Inc.
 
-Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Oracle and OpenJDK are registered trademarks of Oracle Corporation and/or its
+affiliates.
