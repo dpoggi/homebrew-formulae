@@ -8,9 +8,9 @@ brew tap dpoggi/formulae
 
 ## Formulae
 
-| Formula            | Description                                                                                                                                |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `jenkins-lts-plus` | [homebrew-core](https://github.com/Homebrew/homebrew-core)'s `jenkins-lts` with a new `launchd.plist(5)`, JVM options, and `JENKINS_HOME`. |
+Formula | Description
+------- | -----------
+`jenkins-lts-plus` | [homebrew-core](https://github.com/Homebrew/homebrew-core)'s `jenkins-lts` with a new `launchd.plist(5)`, JVM options, and `JENKINS_HOME`.
 
 ## Casks
 
@@ -18,16 +18,16 @@ Casks for [Azul Systems](https://www.azul.com)&reg; [Zulu](https://zulu.org)&reg
 JDKs have been modified to be minimally intrusive (no modification of symlinks)
 and follow the same directory naming scheme Oracle&reg; JDK installers do.
 
-| Cask         | Description                               |
-|--------------|-------------------------------------------|
-| `zulu@10`    | Zulu OpenJDK 10                           |
-| `zulu@9`     | Zulu OpenJDK 9                            |
-| `zulu@8`     | Zulu OpenJDK 8                            |
-| `zulu@7`     | Zulu OpenJDK 7                            |
-| `zulu-cck@8` | Commercial Compatibility Kit for `zulu@8` |
-| `zulu-cck@7` | Commercial Compatibility Kit for `zulu@7` |
-| `zulu8-cck`  | Commercial Compatibility Kit for `zulu8`  |
-| `zulu7-cck`  | Commercial Compatibility Kit for `zulu7`  |
+Cask | Description
+---- | -----------
+`zulu@10` | Zulu OpenJDK 10
+`zulu@9` | Zulu OpenJDK 9
+`zulu@8` | Zulu OpenJDK 8
+`zulu@7` | Zulu OpenJDK 7
+`zulu-cck@8` | Commercial Compatibility Kit for `zulu@8`
+`zulu-cck@7` | Commercial Compatibility Kit for `zulu@7`
+`zulu8-cck` | Commercial Compatibility Kit for `zulu8`
+`zulu7-cck` | Commercial Compatibility Kit for `zulu7`
 
 ## License
 
