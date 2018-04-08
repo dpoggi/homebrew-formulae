@@ -16,42 +16,46 @@ cask 'zulu-cck@8' do
     system_command '/bin/sh',
                    args: ['-c', "tail -n \"+$(awk '/^__ARCHIVE_START__/ { print NR + 1; exit 0; }' \"#{installer_path}\")\" \"#{installer_path}\" | tar xf - -C \"#{staged_path}\""]
 
+    java_home = Pathname.new("/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home")
+
     system_command '/bin/mkdir',
-                   args: ['-p', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc"],
+                   args: ['-p', java_home.join('etc')],
                    sudo: true
     Dir.glob(staged_path.join('license', '*')) do |license|
       system_command '/bin/ln',
-                     args: ['-nsf', license, "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc/#{File.basename(license)}"],
+                     args: ['-nsf', license, java_home.join('etc', File.basename(license))],
                      sudo: true
     end
 
     system_command '/bin/mkdir',
-                   args: ['-p', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts"],
+                   args: ['-p', java_home.join('jre', 'lib', 'fonts')],
                    sudo: true
     Dir.glob(staged_path.join('fonts', '*')) do |font|
       system_command '/bin/ln',
-                     args: ['-nsf', font, "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts/#{File.basename(font)}"],
+                     args: ['-nsf', font, java_home.join('jre', 'lib', 'fonts', File.basename(font))],
                      sudo: true
     end
   end
 
   uninstall_postflight do
+    java_home = Pathname.new("/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home")
+
     Dir.glob(staged_path.join('license', '*')) do |license|
       system_command '/bin/rm',
-                     args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc/#{File.basename(license)}"],
+                     args: ['-f', java_home.join('etc', File.basename(license))],
                      sudo: true
     end
     system_command '/bin/sh',
-                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc 2>/dev/null || true"],
+                   args: ['-c', "rmdir #{java_home.join('etc')} 2>/dev/null || true"],
                    sudo: true
 
     Dir.glob(staged_path.join('fonts', '*')) do |font|
       system_command '/bin/rm',
-                     args: ['-f', "/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts/#{File.basename(font)}"],
+                     args: ['-f', java_home.join('jre', 'lib', 'fonts', File.basename(font))],
                      sudo: true
     end
     system_command '/bin/sh',
-                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts 2>/dev/null || true"],
+                   args: ['-c', "rmdir #{java_home.join('jre', 'lib', 'fonts')} 2>/dev/null || true"],
                    sudo: true
   end
 
