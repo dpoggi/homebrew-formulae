@@ -42,7 +42,7 @@ cask 'zulu8-cck' do
                      sudo: true
     end
     system_command '/bin/sh',
-                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc >/dev/null 2>&1 || true"],
+                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/etc 2>/dev/null || true"],
                    sudo: true
 
     Dir.glob(staged_path.join('fonts', '*')) do |font|
@@ -51,7 +51,7 @@ cask 'zulu8-cck' do
                      sudo: true
     end
     system_command '/bin/sh',
-                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts >/dev/null 2>&1 || true"],
+                   args: ['-c', "rmdir /Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home/jre/lib/fonts 2>/dev/null || true"],
                    sudo: true
   end
 
