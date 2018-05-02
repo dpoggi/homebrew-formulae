@@ -10,6 +10,7 @@ brew tap dpoggi/formulae
 
 Formula | Description
 ------- | -----------
+`flamegraph` | Visualizer for profiled code
 `jenkins-lts-plus` | [homebrew-core](https://github.com/Homebrew/homebrew-core)'s `jenkins-lts` with a new `launchd.plist(5)`, JVM options, and `JENKINS_HOME`.
 
 ## Casks
