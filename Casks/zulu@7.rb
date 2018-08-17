@@ -1,6 +1,6 @@
 cask 'zulu@7' do
-  version '1.7.0_171,7.22.0.3'
-  sha256 '99f0a41f4046b1e2c7fd8bf4672d2518172822d8d2b97703e5d203dc8ddc2303'
+  version '1.7.0_191,7.24.0.1'
+  sha256 '10c76336007a871765ec32aea54d851ea5803ae66b7c4b44a757489d09afe494'
 
   # cdn.azul.com was verified as official when first introduced to the cask
   url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(%r{^.*_}, '')}-macosx_x64.dmg",
