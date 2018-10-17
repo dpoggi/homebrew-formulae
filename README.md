@@ -10,6 +10,7 @@ brew tap dpoggi/formulae
 
 Formula | Description
 ------- | -----------
+`cocoapods-dcp` | Dependency manager for Cocoa projects, with plug-ins and extras
 `flamegraph` | Visualizer for profiled code
 
 ## Casks
