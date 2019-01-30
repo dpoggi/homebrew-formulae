@@ -21,8 +21,7 @@ and follow the same directory naming scheme Oracle&reg; JDK installers do.
 
 Cask | Description
 ---- | -----------
-`zulu@10` | Zulu OpenJDK 10
-`zulu@9` | Zulu OpenJDK 9
+`zulu@11` | Zulu OpenJDK 11
 `zulu@8` | Zulu OpenJDK 8
 `zulu@7` | Zulu OpenJDK 7
 `zulu-cck@8` | Commercial Compatibility Kit for `zulu@8`
@@ -36,7 +35,7 @@ Cask | Description
 
 ## Copyright
 
-Copyright &copy; 2016&ndash;2018 Dan Poggi
+Copyright &copy; 2016&ndash;2019 Dan Poggi
 
 ## Trademark Notice
 
