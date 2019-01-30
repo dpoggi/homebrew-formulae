@@ -1,12 +1,11 @@
 cask 'zulu@7' do
-  version '1.7.0_191,7.24.0.1'
-  sha256 '10c76336007a871765ec32aea54d851ea5803ae66b7c4b44a757489d09afe494'
+  version '1.7.0_201,7.25.0.5'
+  sha256 '8eca975d0515cd21c0859b2de9aad255638842fadc9747c3b8a589101a7eb985'
 
-  # cdn.azul.com was verified as official when first introduced to the cask
   url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(%r{^.*_}, '')}-macosx_x64.dmg",
       referer: 'https://zulu.org/download/?platform=MacOS'
-  name 'Zulu Java SE 7 Development Kit'
-  homepage 'https://zulu.org/'
+  name 'Azul Zulu OpenJDK 7'
+  homepage 'https://www.azul.com/products/zulu-enterprise/'
 
   conflicts_with cask: 'zulu7'
 

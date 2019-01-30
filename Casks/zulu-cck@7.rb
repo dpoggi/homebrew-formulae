@@ -1,12 +1,11 @@
 cask 'zulu-cck@7' do
-  version '1.7.0_191,7.0.0.4'
+  version '1.7.0_201,7.0.0.4'
   sha256 '8602d339b2b2384895d2c56abeab55b02931a7943c4a3a7880b6d770d1b07511'
 
-  # cdn.azul.com was verified as official when first introduced to the cask
   url "https://cdn.azul.com/zcck/bin/zcck#{version.after_comma}-macosx_x64.sh",
       referer: 'https://www.azul.com/products/zulu-and-zulu-enterprise/cck-downloads/mac-os-x/'
-  name 'Commercial Compatibility Kit for Zulu 7'
-  homepage 'https://zulu.org/developer-resources/commercial-compatibility/'
+  name 'Commercial Compatibility Kit for Zulu OpenJDK 7'
+  homepage 'https://www.azul.com/products/zulu-and-zulu-enterprise/cck-downloads/'
 
   depends_on cask: 'zulu@7'
   container type: :naked
