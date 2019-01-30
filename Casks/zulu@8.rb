@@ -1,12 +1,11 @@
 cask 'zulu@8' do
-  version '1.8.0_192,8.33.0.1'
-  sha256 '6391a4d147756ba499241fad61961a6f4c62d3b8a0c30008a9d08aec58f93046'
+  version '1.8.0_201,8.34.0.1'
+  sha256 '23900cf4103864cdbef4f1fe15218d4c28332f390fee7ab52da69931715e9020'
 
-  # cdn.azul.com was verified as official when first introduced to the cask
-  url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(%r{^.*_}, '')}-macosx_x64.dmg",
-      referer: 'https://zulu.org/download/?platform=MacOS'
-  name 'Zulu Java SE 8 Development Kit'
-  homepage 'https://zulu.org/'
+  url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-ca-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(%r{^.*_}, '')}-macosx_x64.dmg",
+      referer: 'https://www.azul.com/downloads/zulu/zulu-mac/'
+  name 'Azul Zulu OpenJDK 8'
+  homepage 'https://www.azul.com/products/zulu-enterprise/'
 
   conflicts_with cask: 'zulu8'
 
