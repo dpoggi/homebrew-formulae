@@ -15,9 +15,10 @@ Formula | Description
 
 ## Casks
 
-Casks for [Azul Systems](https://www.azul.com)&reg; [Zulu](https://zulu.org)&reg;
-JDKs have been modified to be minimally intrusive (no modification of symlinks)
-and follow the same directory naming scheme Oracle&reg; JDK installers do.
+Casks for [Azul Systems](https://www.azul.com/)&reg;
+[Zulu](https://www.azul.com/products/zulu-enterprise/)&reg; JDKs have been
+modified to be minimally intrusive (no modification of symlinks) and follow
+the same directory naming scheme Oracle&reg; JDK installers do.
 
 Cask | Description
 ---- | -----------
