@@ -1,13 +1,12 @@
 class CocoapodsDcp < Formula
   desc "Dependency manager for Cocoa projects, with preinstalled plugins"
   homepage "https://cocoapods.org/"
-  url "https://github.com/CocoaPods/CocoaPods/archive/1.5.3.tar.gz"
-  sha256 "04593483efe1279c93cfc2bf25866a6e1a3d0c49c0c10602b060611c1e8b5e20"
-  revision 4
+  url "https://github.com/CocoaPods/CocoaPods/archive/1.6.1.tar.gz"
+  sha256 "482fbb5c89d1c7c4456f9c1aba3b6ee41cfe74f8ea389a4d3a0b0415d30cda40"
 
   devel do
-    url "https://github.com/CocoaPods/CocoaPods/archive/1.7.0.beta.1.tar.gz"
-    sha256 "d15c177539d92e9dcb96ca94c48c29337e149e010e34a3012e79a310e802fe0e"
+    url "https://github.com/CocoaPods/CocoaPods/archive/1.7.0.beta.3.tar.gz"
+    sha256 "8bd8922cc8b5065d684c4c9dadb0e319bbefaed4baac01daa3a9c083c930417e"
   end
 
   depends_on "ruby" if MacOS.version <= :sierra
