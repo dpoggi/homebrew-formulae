@@ -22,8 +22,11 @@ class CocoapodsDcp < Formula
     system "gem", "install", "cocoapods-rome", "-v", "1.0.1"
 
     inreplace libexec/"gems/RubyInline-3.12.4/lib/inline.rb",
+              "if recompile then",
+              "if recompile then\n          RbConfig::CONFIG['srcdir'] = RbConfig::CONFIG['includedir']"
+    inreplace libexec/"gems/RubyInline-3.12.4/lib/inline.rb",
               "RUBY_PLATFORM =~ /mingw/",
-              "RUBY_PLATFORM =~ /mingw/; cmd = cmd.sub(/^xcrun /, 'xcrun --sdk macosx ') if RUBY_PLATFORM =~ /darwin/"
+              "RUBY_PLATFORM =~ /mingw/\n          cmd = cmd.sub(/^xcrun /, 'xcrun --sdk macosx ') if RUBY_PLATFORM =~ /darwin/"
 
     bin.install libexec/"bin/pod", libexec/"bin/xcodeproj"
 
