@@ -1,6 +1,6 @@
 cask 'zulu-cck@7' do
   version '1.7.0_242,7.0.0.10'
-  sha256 '259e384bb1f46623696b0a0b010859920542b8396665e82e684a7ad60d8ee413'
+  sha256 '0c206ae6ba1450bf5e7f6bb07a7dfb30497b49d62694eb9232dab5957918cbd0'
 
   url "https://cdn.azul.com/zcck/bin/zcck#{version.after_comma}-macosx_x64.sh",
       referer: 'https://www.azul.com/products/zulu-and-zulu-enterprise/cck-downloads/mac-os-x/'
