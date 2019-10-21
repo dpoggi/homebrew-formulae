@@ -27,8 +27,6 @@ Cask | Description
 `zulu@7` | Zulu OpenJDK 7
 `zulu-cck@8` | Commercial Compatibility Kit for `zulu@8`
 `zulu-cck@7` | Commercial Compatibility Kit for `zulu@7`
-`zulu8-cck` | Commercial Compatibility Kit for `zulu8`
-`zulu7-cck` | Commercial Compatibility Kit for `zulu7`
 
 ## License
 
