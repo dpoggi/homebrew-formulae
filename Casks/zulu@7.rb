@@ -3,9 +3,9 @@ cask 'zulu@7' do
   sha256 'ad59ad92cf9e4889807041830b93187557dff74bfa23d3d644bfc4c7f16733ac'
 
   url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-ca-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(%r{^.*_}, '')}-macosx_x64.dmg",
-      referer: 'https://www.azul.com/downloads/zulu/zulu-mac/'
+      referer: 'https://www.azul.com/downloads/zulu-community/'
   name 'Azul Zulu OpenJDK 7'
-  homepage 'https://www.azul.com/products/zulu-enterprise/'
+  homepage 'https://www.azul.com/products/zulu-community/'
 
   conflicts_with cask: 'zulu7'
 

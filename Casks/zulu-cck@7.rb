@@ -12,6 +12,7 @@ cask 'zulu-cck@7' do
 
   postflight do
     installer_path = staged_path.join("zcck#{version.after_comma}-macosx_x64.sh")
+
     system_command '/bin/sh',
                    args: ['-c', "tail -n \"+$(awk '/^__ARCHIVE_START__/ { print NR + 1; exit 0; }' \"#{installer_path}\")\" \"#{installer_path}\" | tar xf - -C \"#{staged_path}\""]
 
@@ -20,6 +21,7 @@ cask 'zulu-cck@7' do
     system_command '/bin/mkdir',
                    args: ['-p', java_home.join('etc')],
                    sudo: true
+
     Dir.glob(staged_path.join('license', '*')) do |license|
       system_command '/bin/ln',
                      args: ['-nsf', license, java_home.join('etc', File.basename(license))],
@@ -29,6 +31,7 @@ cask 'zulu-cck@7' do
     system_command '/bin/mkdir',
                    args: ['-p', java_home.join('jre', 'lib', 'fonts')],
                    sudo: true
+
     Dir.glob(staged_path.join('fonts', '*')) do |font|
       system_command '/bin/ln',
                      args: ['-nsf', font, java_home.join('jre', 'lib', 'fonts', File.basename(font))],
@@ -44,6 +47,7 @@ cask 'zulu-cck@7' do
                      args: ['-f', java_home.join('etc', File.basename(license))],
                      sudo: true
     end
+
     system_command '/bin/sh',
                    args: ['-c', "rmdir #{java_home.join('etc')} 2>/dev/null || true"],
                    sudo: true
@@ -53,6 +57,7 @@ cask 'zulu-cck@7' do
                      args: ['-f', java_home.join('jre', 'lib', 'fonts', File.basename(font))],
                      sudo: true
     end
+
     system_command '/bin/sh',
                    args: ['-c', "rmdir #{java_home.join('jre', 'lib', 'fonts')} 2>/dev/null || true"],
                    sudo: true

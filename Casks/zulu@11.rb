@@ -3,9 +3,9 @@ cask 'zulu@11' do
   sha256 '54cd0130d2884a924a9d71d2107230abe4ac42cd67b58e27b88be454e8f37b9f'
 
   url "https://cdn.azul.com/zulu/bin/zulu#{version.before_comma}-ca-jdk#{version.after_comma}-macosx_x64.dmg",
-      referer: 'https://www.azul.com/downloads/zulu/zulu-mac/'
+      referer: 'https://www.azul.com/downloads/zulu-community/'
   name 'Azul Zulu OpenJDK 11'
-  homepage 'https://www.azul.com/products/zulu-enterprise/'
+  homepage 'https://www.azul.com/products/zulu-community/'
 
   pkg "Double-Click to Install Zulu #{version.major}.pkg"
 
