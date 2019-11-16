@@ -1,6 +1,6 @@
 cask 'zulu@11' do
-  version '11.35.13,11.0.5'
-  sha256 '54cd0130d2884a924a9d71d2107230abe4ac42cd67b58e27b88be454e8f37b9f'
+  version '11.35.15_1,11.0.5'
+  sha256 'd3385c29bd1fe0b1454c04972246403008c158dccdf820aad4e0b5b444f3ddce'
 
   url "https://cdn.azul.com/zulu/bin/zulu#{version.before_comma}-ca-jdk#{version.after_comma}-macosx_x64.dmg",
       referer: 'https://www.azul.com/downloads/zulu-community/'
@@ -10,14 +10,15 @@ cask 'zulu@11' do
   pkg "Double-Click to Install Zulu #{version.major}.pkg"
 
   postflight do
+    jvm_dir = "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk"
     system_command '/bin/mv',
-                   args: ['-f', '--', "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk", "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk"],
+                   args: ['-f', '--', "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk", jvm_dir],
                    sudo: true
     system_command '/usr/libexec/PlistBuddy',
-                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string BundledApp', "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk/Contents/Info.plist"],
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string BundledApp', "#{jvm_dir}/Contents/Info.plist"],
                    sudo: true
     system_command '/usr/libexec/PlistBuddy',
-                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string JNI', "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk/Contents/Info.plist"],
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string JNI', "#{jvm_dir}/Contents/Info.plist"],
                    sudo: true
   end
 
@@ -25,6 +26,6 @@ cask 'zulu@11' do
                        "com.azulsystems.zulu.#{version.major}",
                      ],
             delete:  [
-                       "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk",
+                       "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk",
                      ]
 end
