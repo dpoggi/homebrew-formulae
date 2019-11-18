@@ -6,7 +6,7 @@ class CocoapodsDcp < Formula
 
   depends_on "ruby" if MacOS.version <= :sierra
 
-  conflicts_with "cocoapods", :because => "both install `pod` and `xcodeproj` binaries"
+  conflicts_with "cocoapods", :because => "both install `pod` binaries"
 
   def install
     ENV["GEM_HOME"] = libexec
@@ -27,7 +27,7 @@ class CocoapodsDcp < Formula
               "RUBY_PLATFORM =~ /mingw/",
               "RUBY_PLATFORM =~ /mingw/\n          cmd = cmd.sub(/^xcrun /, 'xcrun --sdk macosx ') if RUBY_PLATFORM =~ /darwin/"
 
-    bin.install libexec/"bin/pod", libexec/"bin/xcodeproj"
+    bin.install libexec/"bin/pod"
 
     bin.env_script_all_files(libexec/"bin", :GEM_HOME => ENV["GEM_HOME"], :INLINEDIR => "#{HOMEBREW_PREFIX}/var/cache")
   end
