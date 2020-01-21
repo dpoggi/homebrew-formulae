@@ -1,8 +1,8 @@
 cask 'zulu@7' do
-  version '1.7.0_242,7.34.0.5'
-  sha256 'ad59ad92cf9e4889807041830b93187557dff74bfa23d3d644bfc4c7f16733ac'
+  version '1.7.0_252,7.36.0.5'
+  sha256 '7991a2c6beeb08bdfe4943d0f667f837f329e116753d4497b820b9f3f97f7d4c'
 
-  url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-ca-jdk#{version.minor}.#{version.patch}.#{version.before_comma.sub(%r{^.*_}, '')}-macosx_x64.dmg",
+  url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-ca-jdk#{version.minor}.#{version.patch.sub(%r{_}, '.')}-macosx_x64.dmg",
       referer: 'https://www.azul.com/downloads/zulu-community/'
   name 'Azul Zulu OpenJDK 7'
   homepage 'https://www.azul.com/products/zulu-community/'
