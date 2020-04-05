@@ -1,8 +1,8 @@
 class CocoapodsDcp < Formula
   desc "Dependency manager for Cocoa projects, with preinstalled plugins"
   homepage "https://cocoapods.org/"
-  url "https://github.com/CocoaPods/CocoaPods/archive/1.8.4.tar.gz"
-  sha256 "7afe0a8f0d1a83d23a3a04c195229c9bec37d114e6b81b41458e65e33138f8c6"
+  url "https://github.com/CocoaPods/CocoaPods/archive/1.9.1.tar.gz"
+  sha256 "c5ce17f20f93cba55bde13e9e6e87b1f49b312ab27db4f259226d2c019953bcf"
 
   depends_on "ruby" if MacOS.version <= :sierra
 
@@ -10,9 +10,12 @@ class CocoapodsDcp < Formula
 
   def install
     ENV["GEM_HOME"] = libexec
+    ENV["SDKROOT"] = ENV["HOMEBREW_SDKROOT"] = MacOS.sdk_path
 
     system "gem", "build", "cocoapods.gemspec"
     system "gem", "install", "cocoapods-#{version}.gem"
+
+    system "gem", "install", "ruby-graphviz", "-v", "1.2.4" if MacOS.version < :catalina
 
     system "gem", "install", "cocoapods-art", "-v", "1.0.4"
     system "gem", "install", "cocoapods-dependencies", "-v", "1.3.0"
@@ -23,13 +26,13 @@ class CocoapodsDcp < Formula
     inreplace libexec/"gems/RubyInline-3.12.5/lib/inline.rb",
               "if recompile then",
               "if recompile then\n          RbConfig::CONFIG['srcdir'] = RbConfig::CONFIG['includedir']"
-    inreplace libexec/"gems/RubyInline-3.12.5/lib/inline.rb",
-              "RUBY_PLATFORM =~ /mingw/",
-              "RUBY_PLATFORM =~ /mingw/\n          cmd = cmd.sub(/^xcrun /, 'xcrun --sdk macosx ') if RUBY_PLATFORM =~ /darwin/"
 
     bin.install libexec/"bin/pod"
 
-    bin.env_script_all_files(libexec/"bin", :GEM_HOME => ENV["GEM_HOME"], :INLINEDIR => "#{HOMEBREW_PREFIX}/var/cache")
+    bin.env_script_all_files libexec/"bin",
+                             :GEM_HOME  => ENV["GEM_HOME"],
+                             :INLINEDIR => "#{HOMEBREW_PREFIX}/var/cache",
+                             :SDKROOT   => ENV["SDKROOT"]
   end
 
   test do
