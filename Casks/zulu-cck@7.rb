@@ -1,5 +1,5 @@
 cask 'zulu-cck@7' do
-  version '1.7.0_252,7.0.0.10'
+  version '1.7.0_262,7.0.0.10'
   sha256 '0c206ae6ba1450bf5e7f6bb07a7dfb30497b49d62694eb9232dab5957918cbd0'
 
   url "https://cdn.azul.com/zcck/bin/zcck#{version.after_comma}-macosx_x64.sh",
