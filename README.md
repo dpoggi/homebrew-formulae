@@ -18,15 +18,13 @@ Formula | Description
 Casks for [Azul Systems](https://www.azul.com/)&reg;
 [Zulu](https://www.azul.com/products/zulu-enterprise/)&reg; JDKs have been
 modified to be minimally intrusive (no modification of symlinks) and follow
-the same directory naming scheme Oracle&reg; JDK installers do.
+the same directory naming scheme Oracle&reg;'s installers do.
 
 Cask | Description
 ---- | -----------
 `zulu@11` | Zulu OpenJDK 11
 `zulu@8` | Zulu OpenJDK 8
-`zulu@7` | Zulu OpenJDK 7
-`zulu-cck@8` | Commercial Compatibility Kit for `zulu@8`
-`zulu-cck@7` | Commercial Compatibility Kit for `zulu@7`
+`zulu-cck@8` | Commercial Compatibility Kit for Zulu OpenJDK 8
 
 ## License
 
@@ -40,5 +38,4 @@ Copyright &copy; 2016&ndash;2020 Dan Poggi
 
 Azul Systems and Zulu are registered trademarks of Azul Systems, Inc.
 
-Oracle and OpenJDK are registered trademarks of Oracle Corporation and/or its
-affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
