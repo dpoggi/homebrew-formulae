@@ -1,8 +1,8 @@
 class CocoapodsDcp < Formula
   desc "Dependency manager for Cocoa projects, with preinstalled plugins"
   homepage "https://cocoapods.org/"
-  url "https://github.com/CocoaPods/CocoaPods/archive/1.9.1.tar.gz"
-  sha256 "c5ce17f20f93cba55bde13e9e6e87b1f49b312ab27db4f259226d2c019953bcf"
+  url "https://github.com/CocoaPods/CocoaPods/archive/1.9.2.tar.gz"
+  sha256 "2709ab194b029e10c84b37127d790f67184669f8bef22a72ce1071170f592024"
 
   depends_on "ruby" if MacOS.version <= :sierra
 
@@ -20,7 +20,7 @@ class CocoapodsDcp < Formula
     system "gem", "install", "cocoapods-art", "-v", "1.0.4"
     system "gem", "install", "cocoapods-dependencies", "-v", "1.3.0"
     system "gem", "install", "cocoapods-docs", "-v", "0.2.0"
-    system "gem", "install", "cocoapods-keys", "-v", "2.1.0"
+    system "gem", "install", "cocoapods-keys", "-v", "2.2.0"
     system "gem", "install", "cocoapods-rome", "-v", "1.0.1"
 
     inreplace libexec/"gems/RubyInline-3.12.5/lib/inline.rb",
