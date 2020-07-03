@@ -11,6 +11,7 @@ cask 'zulu@11' do
 
   postflight do
     jvm_dir = "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk"
+
     system_command '/bin/mv',
                    args: ['-f', '--', "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk", jvm_dir],
                    sudo: true
