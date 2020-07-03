@@ -10,8 +10,9 @@ cask 'zulu-cck@8' do
   depends_on cask: 'zulu@8'
   container type: :naked
 
+  java_home = Pathname.new("/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home")
+
   postflight do
-    java_home = Pathname.new("/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home")
     installer_path = staged_path.join("zcck#{version.after_comma}-macosx_x64.sh")
     installer_extract_script = <<~EOS
       START="$(
@@ -20,7 +21,8 @@ cask 'zulu-cck@8' do
       tail -n "+${START}" '#{installer_path}' | tar xf - -C '#{staged_path}'
     EOS
 
-    system_command '/bin/sh', args: ['-c', installer_extract_script]
+    system_command '/bin/sh',
+                   args: ['-c', installer_extract_script]
 
     system_command '/bin/mkdir',
                    args: ['-p', java_home.join('etc')],
@@ -44,8 +46,6 @@ cask 'zulu-cck@8' do
   end
 
   uninstall_postflight do
-    java_home = Pathname.new("/Library/Java/JavaVirtualMachines/zulu#{version.before_comma}.jdk/Contents/Home")
-
     Dir.glob(staged_path.join('license', '*')) do |license|
       system_command '/bin/rm',
                      args: ['-f', java_home.join('etc', File.basename(license))],
@@ -53,7 +53,7 @@ cask 'zulu-cck@8' do
     end
 
     system_command '/bin/sh',
-                   args: ['-c', "rmdir #{java_home.join('etc')} 2>/dev/null || true"],
+                   args: ['-c', "rmdir '#{java_home.join('etc')}' 2>/dev/null || :"],
                    sudo: true
 
     Dir.glob(staged_path.join('fonts', '*')) do |font|
@@ -63,7 +63,7 @@ cask 'zulu-cck@8' do
     end
 
     system_command '/bin/sh',
-                   args: ['-c', "rmdir #{java_home.join('jre', 'lib', 'fonts')} 2>/dev/null || true"],
+                   args: ['-c', "rmdir '#{java_home.join('jre', 'lib', 'fonts')}' 2>/dev/null || :"],
                    sudo: true
   end
 

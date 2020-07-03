@@ -7,11 +7,13 @@ cask 'zulu@11' do
   name 'Azul Zulu OpenJDK 11'
   homepage 'https://www.azul.com/products/zulu-community/'
 
+  conflicts_with cask: 'zulu11'
+
   pkg "Double-Click to Install Zulu #{version.major}.pkg"
 
-  postflight do
-    jvm_dir = "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk"
+  jvm_dir = "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk"
 
+  postflight do
     system_command '/bin/mv',
                    args: ['-f', '--', "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk", jvm_dir],
                    sudo: true
@@ -27,6 +29,6 @@ cask 'zulu@11' do
                        "com.azulsystems.zulu.#{version.major}",
                      ],
             delete:  [
-                       "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk",
+                       jvm_dir,
                      ]
 end
