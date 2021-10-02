@@ -1,8 +1,8 @@
 class OpenocdGd < Formula
   desc "On-chip debugging and in-system programming for GigaDevice CPUs"
   homepage "https://openocd.org/"
-  url "https://downloads.sourceforge.net/project/openocd/openocd/0.11.0/openocd-0.11.0.tar.bz2"
-  sha256 "43a3ce734aff1d3706ad87793a9f3a5371cb0e357f0ffd0a151656b06b3d1e7d"
+  url "https://github.com/GigaDevice-Semiconductor/openocd/archive/refs/heads/xpack.tar.gz"
+  sha256 "7481a58ee5b7ad68352c7795d3503930f123235bdcff03be8ac5c57f9c66cbc8"
   license "GPL-2.0-or-later"
 
   head do
