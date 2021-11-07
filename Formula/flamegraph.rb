@@ -5,8 +5,6 @@ class Flamegraph < Formula
   sha256 "c5ba824228a4f7781336477015cb3b2d8178ffd86bccd5f51864ed52a5ad6675"
   head "https://github.com/brendangregg/FlameGraph.git"
 
-  bottle :unneeded
-
   depends_on "perl" if MacOS.version > :catalina
 
   def install
