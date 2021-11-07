@@ -34,7 +34,7 @@ Cask | Description
 
 ## Copyright
 
-Copyright &copy; 2016&ndash;2020 Dan Poggi
+Copyright &copy; 2016&ndash;2021 Dan Poggi
 
 ## Trademark Notice
 
