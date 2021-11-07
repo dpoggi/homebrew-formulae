@@ -1,34 +1,26 @@
-cask 'zulu@11' do
-  version '11.39.15,11.0.7'
-  sha256 '8322cb6498076f171ab5efa4101fe8207d9aa6517d1d743bbe4d753b67abc8cb'
+cask "zulu@11" do
+  version "11.0.13,11.52.13-ca"
+  sha256 "b780c7934ee5e67b82cd0362dd0295895d53976498b3dccfe18747d98ea27bda"
 
-  url "https://cdn.azul.com/zulu/bin/zulu#{version.before_comma}-ca-jdk#{version.after_comma}-macosx_x64.dmg",
-      referer: 'https://www.azul.com/downloads/zulu-community/'
-  name 'Azul Zulu OpenJDK 11'
-  homepage 'https://www.azul.com/products/zulu-community/'
+  url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-jdk#{version.before_comma}-macosx_x64.dmg",
+      referer: "https://www.azul.com/downloads/zulu/zulu-mac/"
+  name "Azul Zulu OpenJDK 11"
+  desc "Java SE 11 development kit from Azul Systems"
+  homepage "https://www.azul.com/products/core/"
 
-  conflicts_with cask: 'zulu11'
+  conflicts_with cask: "zulu11"
 
-  pkg "Double-Click to Install Zulu #{version.major}.pkg"
-
-  jvm_dir = "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma.sub(%r{_.*$}, '')}.jdk"
+  pkg "Double-Click to Install Azul Zulu JDK #{version.major}.pkg"
 
   postflight do
-    system_command '/bin/mv',
-                   args: ['-f', '--', "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk", jvm_dir],
-                   sudo: true
-    system_command '/usr/libexec/PlistBuddy',
-                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string BundledApp', "#{jvm_dir}/Contents/Info.plist"],
-                   sudo: true
-    system_command '/usr/libexec/PlistBuddy',
-                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string JNI', "#{jvm_dir}/Contents/Info.plist"],
+    system_command "/bin/mv",
+                   args: ["-f",
+                          "--",
+                          "/Library/Java/JavaVirtualMachines/zulu-#{version.major}.jdk",
+                          "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk"],
                    sudo: true
   end
 
-  uninstall pkgutil: [
-                       "com.azulsystems.zulu.#{version.major}",
-                     ],
-            delete:  [
-                       jvm_dir,
-                     ]
+  uninstall pkgutil: "com.azulsystems.zulu.#{version.major}",
+            delete:  "/Library/Java/JavaVirtualMachines/zulu-#{version.before_comma}.jdk"
 end
