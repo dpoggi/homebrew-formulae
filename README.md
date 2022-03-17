@@ -11,7 +11,6 @@ brew tap dpoggi/formulae
 Formula | Description
 ------- | -----------
 `cocoapods-dcp` | Dependency manager for Cocoa projects, with preinstalled plugins
-`fawkes` | A utility to protect user privacy
 `flamegraph` | Visualizer for profiled code
 `sndfile-tools` | Small collection of programs built on libsndfile
 
