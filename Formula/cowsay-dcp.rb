@@ -6,6 +6,8 @@ class CowsayDcp < Formula
   sha256 "d8b871332cfc1f0b6c16832ecca413ca0ac14d58626491a6733829e3d655878b"
   license "GPL-3.0-only"
 
+  conflicts_with "cowsay", because: "both install `cowsay` binaries"
+
   def install
     system "/bin/sh", "install.sh", prefix
     mv prefix/"man", share
