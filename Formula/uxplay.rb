@@ -7,12 +7,12 @@ class Uxplay < Formula
   head "https://github.com/FDH2/UxPlay.git", branch: "master"
 
   depends_on "cmake" => :build
+  depends_on "pkgconf" => :build
   depends_on "gettext"
   depends_on "glib"
   depends_on "gstreamer"
   depends_on "libplist"
   depends_on "openssl@3"
-  depends_on "pkgconf" => :build
 
   def install
     args = %W[
